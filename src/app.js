@@ -8,7 +8,8 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
-const Connection = require("./models/ConnectionRequest.js")
+const Connection = require("./models/ConnectionRequest.js");
+require("dotenv").config();
 
 app.use(cookieParser());
 app.use(cors({
@@ -298,7 +299,7 @@ app.get("/user/feed", userAuth, async (req, res) => {
   
 connectDB().then(()=>{
     console.log("database connected successsfully");
-    app.listen(3000,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log("server connected successfully");
     });
 }).catch(()=>{
