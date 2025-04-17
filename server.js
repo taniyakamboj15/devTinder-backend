@@ -29,6 +29,7 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", chatRouter);
+app.use("/", (req, res) => res.status(201).json({ message: "connected" }));
 app.use("/", (req, res, err) => {
   //
   if (err) {
