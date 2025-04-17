@@ -11,7 +11,6 @@ const getSecretRoomId = ({ userId, targetUserId }) => {
 
 const initializeSocket = (server) => {
   const io = socket(server, {
-    transports: ["websocket"],
     cors: {
       origin: [
         "http://localhost:5173",
