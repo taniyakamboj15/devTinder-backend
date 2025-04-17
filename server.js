@@ -12,7 +12,7 @@ const conectDB = require("./config/databse");
 // const http = require("http");
 // const intializeSocket = require("./utils/socket");
 // const chatRouter = require("./routes/chatRouter");
-// require("dotenv").config();
+require("dotenv").config();
 
 // app.use(
 //   cors({
