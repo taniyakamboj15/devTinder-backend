@@ -12,18 +12,19 @@ const getSecretRoomId = ({ userId, targetUserId }) => {
 const initializeSocket = (server) => {
   const io = socket(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5173",
+        "https://devtinder.taniyakamboj.info",
+        "https://devtinder.abhinavranjan.me",
+      ],
       credentials: true,
     },
   });
 
   io.on("connection", (socket) => {
-    console.log(`User connected: ${socket.id}`);
-
     socket.on("joinChat", ({ userId, targetUserId }) => {
       const roomId = getSecretRoomId({ userId, targetUserId });
       socket.join(roomId);
-      console.log(`User ${userId} joined room ${roomId}`);
     });
 
     socket.on(
@@ -55,7 +56,6 @@ const initializeSocket = (server) => {
             targetUserId,
             createdAt: new Date().toISOString(),
           });
-          console.log(`Message sent to ${roomId}: ${text}`);
         } catch (err) {
           console.error("Error saving message:", err);
         }

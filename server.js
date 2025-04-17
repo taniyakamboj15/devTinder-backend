@@ -14,12 +14,16 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://devtinder.taniyakamboj.info"],
+    origin: [
+      "http://localhost:5173",
+      "https://devtinder.taniyakamboj.info",
+      "https://devtinder.abhinavranjan.me",
+    ],
     credentials: true,
   })
 );
 
-app.use(express.json()); // for reading json req data
+app.use(express.json());
 app.use(cookieParser());
 
 app.use("/", authRouter);
