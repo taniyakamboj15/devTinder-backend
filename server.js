@@ -20,7 +20,7 @@ app.use(
 );
 
 app.use(express.json()); // for reading json req data
-authRouter.use(cookieParser());
+app.use(cookieParser());
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
