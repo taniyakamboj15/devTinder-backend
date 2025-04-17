@@ -16,7 +16,7 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://devtinder.taniyakamboj.info"],
     credentials: true,
   })
 );
@@ -44,7 +44,7 @@ intializeSocket(server);
 conectDB()
   .then((result) => {
     console.log("databse connected sucessfully");
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log("Server Connected successfully");
     });
   })
