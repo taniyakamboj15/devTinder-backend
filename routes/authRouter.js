@@ -84,7 +84,11 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 authRouter.post("/logout", (req, res) => {
-  res.clearCookie("jwt");
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: true, // true for HTTPS
+    sameSite: "None",
+  });
   res.send("logged out");
 });
 module.exports = authRouter;
