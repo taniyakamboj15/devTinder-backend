@@ -21,23 +21,25 @@ app.use(
   })
 );
 
-app.use(express.json()); // for reading json req data
-authRouter.use(cookieParser());
+// app.use(express.json()); // for reading json req data
+// authRouter.use(cookieParser());
 
-app.use("/", authRouter);
-app.use("/", profileRouter);
-app.use("/", requestRouter);
-app.use("/", userRouter);
-app.use("/", chatRouter);
-app.use("/", (req, res) => res.status(201).json({ message: "connected" }));
-app.use("/", (req, res, err) => {
-  //
-  if (err) {
-    res.status(500).send("something went wrong");
-  }
-});
-const server = http.createServer(app);
-intializeSocket(server);
+// app.use("/", authRouter);
+// app.use("/", profileRouter);
+// app.use("/", requestRouter);
+// app.use("/", userRouter);
+// app.use("/", chatRouter);
+app.use("/", (req, res) =>
+  res.status(201).json({ message: "DevTinder Running" })
+);
+// app.use("/", (req, res, err) => {
+//   //
+//   if (err) {
+//     res.status(500).send("something went wrong");
+//   }
+// });
+// const server = http.createServer(app);
+// intializeSocket(server);
 
 conectDB()
   .then((result) => {
