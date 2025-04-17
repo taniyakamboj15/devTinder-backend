@@ -43,7 +43,11 @@ authRouter.post("/signup", emailAuth, async (req, res) => {
     });
     const signedUser = await user.save();
     var token = await jwt.sign({ _id: signedUser._id }, process.env.JWT_SECRET);
-    res.cookie("jwt", token);
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: true, // true for HTTPS
+      sameSite: "None",
+    });
 
     const userWithoutPassword = signedUser.toObject();
     delete userWithoutPassword.password;
@@ -66,7 +70,11 @@ authRouter.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
     var token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-    res.cookie("jwt", token);
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: true, // true for HTTPS
+      sameSite: "None",
+    });
     const userWithoutPassword = user.toObject();
     delete userWithoutPassword.password;
 
